@@ -59,3 +59,19 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
   return res.json() as Promise<T>;
 }
+
+export function friendlyApiMessage(
+  err: unknown,
+  context: ApiContext = "default",
+): string {
+  if (!(err instanceof ApiError)) return CONTEXT_MESSAGES[context];
+
+  if (err.status >= 500)
+    return "O servidor está com problemas. Tente novamente em instantes.";
+
+  return (
+    CONTEXT_STATUS_MESSAGES.get(`${err.status}:${context}`) ??
+    STATUS_MESSAGES[err.status] ??
+    CONTEXT_MESSAGES[context]
+  );
+}
