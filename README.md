@@ -41,7 +41,7 @@ Cole o conteúdo abaixo e preencha com suas credenciais:
 
 ```dotenv
 # URL base da API do backend (Fastify)
-# Em desenvolvimento, use localhost. Em produção, substitua pela URL real.
+# Em desenvolvimento, use localhost ou ngrok. Em produção, substitua pela URL real.
 NEXT_PUBLIC_API_URL=http://localhost:3333
 
 # Auth.js — chave secreta para assinar os tokens de sessão
