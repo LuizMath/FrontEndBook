@@ -75,3 +75,10 @@ export function friendlyApiMessage(
     CONTEXT_MESSAGES[context]
   );
 }
+
+export function createBook(input: CreateBookInput): Promise<Book> {
+  return request<Book>("/book/create", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}

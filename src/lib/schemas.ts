@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 
 const currentYear = new Date().getFullYear();
 
@@ -14,7 +14,7 @@ export const bookSchema = z.object({
     .min(1, "Autor é obrigatório")
     .max(120, "Nome de autor muito longo"),
   publishedYear: z.coerce
-    .number({ error: "Informe um ano válido" })
+    .number({ invalid_type_error: "Informe um ano válido" })
     .int("Ano deve ser inteiro")
     .min(1, "Ano inválido")
     .max(currentYear, `Ano não pode ser maior que ${currentYear}`),
