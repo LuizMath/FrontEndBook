@@ -1,4 +1,5 @@
 import type { Book, CreateBookInput } from "@/types/book";
+import { CreateUserInput } from "@/types/user";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3333";
 
@@ -78,6 +79,13 @@ export function friendlyApiMessage(
 
 export function createBook(input: CreateBookInput): Promise<Book> {
   return request<Book>("/book/create", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
+export function createUser(input: CreateUserInput): Promise<unknown> {
+  return request("/user/create", {
     method: "POST",
     body: JSON.stringify(input),
   });
