@@ -100,10 +100,3 @@ export async function listBooks(params?: { title?: string }): Promise<Book[]> {
   );
   return data.foundBooks ?? [];
 }
-
-export function createBook(input: CreateBookInput): Promise<Book> {
-  return request<Book>("/book/create", {
-    method: "POST",
-    body: JSON.stringify(input),
-  });
-}
