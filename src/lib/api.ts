@@ -90,3 +90,20 @@ export function createUser(input: CreateUserInput): Promise<unknown> {
     body: JSON.stringify(input),
   });
 }
+
+export async function listBooks(params?: { title?: string }): Promise<Book[]> {
+  const search = new URLSearchParams();
+  if (params?.title) search.set("title", params.title);
+  const qs = search.toString();
+  const data = await request<{ foundBooks: Book[] }>(
+    `/book${qs ? `?${qs}` : ""}`,
+  );
+  return data.foundBooks ?? [];
+}
+
+export function createBook(input: CreateBookInput): Promise<Book> {
+  return request<Book>("/book/create", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
