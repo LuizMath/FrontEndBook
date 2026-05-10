@@ -13,8 +13,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       try {
         await createUser({
           name: user.name ?? "",
-          email: user.email ?? "",
-          avatarurl: user.image ?? "",
+          email: user.email,
+          avatarUrl: user.image ?? "",
         });
       } catch (err) {
         console.log("failed to fetch", err);
